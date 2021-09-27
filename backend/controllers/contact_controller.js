@@ -6,7 +6,7 @@ exports.getContacts = async function (req, res, next) {
     contacts.then(result => this.setState(result)).catch(err => console.log("Failed" + err))
     res.json({contacts: (await contacts).map(u => u.toObject())})
 }
-//works
+
 exports.getContactById = async function (req, res, next) {
     const contactId = req.params._id;
     let contact;
@@ -18,7 +18,7 @@ exports.getContactById = async function (req, res, next) {
     res.json({contact: contact.toObject()});
 }
 
-//works
+
 exports.getContactsByUserId = async function (req, res, next) {
     const userId = req.params.owner
     let contacts = Contact.find({owner: userId}).exec()
@@ -26,7 +26,6 @@ exports.getContactsByUserId = async function (req, res, next) {
 
     res.json({contacts: (await contacts).map(c => c.toObject())});
 }
-
 
 exports.createContact = async function (req, res, next) {
     const {
@@ -58,7 +57,6 @@ exports.createContact = async function (req, res, next) {
     res.status(201).json({contact: createdContact})
 }
 
-//works (for now without owner change possible)
 exports.updateContact = async function (req, res, next) {
     const {
         first_name, last_name, street, zip, city, state, country,
@@ -100,7 +98,6 @@ exports.updateContact = async function (req, res, next) {
     res.status(200).json({contact: contact.toObject()})
 }
 
-//works
 exports.deleteContact = async function (req, res, next) {
     const contactId = req.params._id;
     let contact

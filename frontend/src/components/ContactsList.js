@@ -4,7 +4,6 @@ import {useHistory} from "react-router-dom";
 
 const ContactsList = props => {
     const [loadedContacts, setLoadedContacts] = useState()
-    //const [markers, setMarkers] = useState([{markers: [], name: ""}])
     let id = props.id
     useEffect(() => {
         let responseData
@@ -37,12 +36,10 @@ const ContactsList = props => {
         }
         sendRequest()
     }, [props.showMy])
-    /* const updateMarkers = (newMarkers) => {
-         console.log(newMarkers)
-         setMarkers(newMarkers)
-         console.log("markers: " + markers)
-     }*/
-
+    useEffect(() => {
+        if(loadedContacts !== undefined)
+        props.contacts(loadedContacts)
+    },[loadedContacts])
     return (
         <div className='contact-list'>
             {loadedContacts && <ContactItem contacts={loadedContacts} user={id}/>
