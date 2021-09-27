@@ -17,7 +17,7 @@ const AddManagerScreen = props => {
             city: "",
             state: "",
             country: "",
-            owner: "",
+            owner: currentUser,
             is_private: false,
         })
 
@@ -117,7 +117,7 @@ const AddManagerScreen = props => {
         if (response.ok) {
             history.push('/main')
         } else {
-            alert("Invalid Login")
+            alert("Problem with adding contact")
         }
 
 

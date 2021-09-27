@@ -22,7 +22,7 @@ exports.getContactById = async function (req, res, next) {
 exports.getContactsByUserId = async function (req, res, next) {
     const userId = req.params.owner
     let contacts = Contact.find({owner: userId}).exec()
-    contacts.then(result => this.setState(result)).catch(err => console.log("Problem with finding contacts"))
+    contacts.then(result => this.setState(result))
 
     res.json({contacts: (await contacts).map(c => c.toObject())});
 }
@@ -64,19 +64,22 @@ exports.updateContact = async function (req, res, next) {
         first_name, last_name, street, zip, city, state, country,
         is_private, owner
     } = req.body;
+    console.log(req.body)
     const contactId = req.params._id
     let contact
+    let geoLocation
     try {
         contact = await Contact.findById(contactId)
     } catch (err) {
         console.log("Smth went wrong here")
     }
-    const address = {street: street, zip: zip, country: country, state: state, city: city}
 
-    const geoLocation = await getGeoLocation(address).then(() => {
-           console.log("geo location caught")
-        }
-    ).catch(err => console.log(err.message))
+    const address = {street: street, zip: zip, country: country, state: state, city: city}
+    try {
+        geoLocation = await getGeoLocation(address)
+    } catch (err) {
+        console.log("Smth went wrong" + err.message)
+    }
     contact.first_name = first_name;
     contact.last_name = last_name;
     contact.street = street;
