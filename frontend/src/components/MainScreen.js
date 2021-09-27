@@ -10,7 +10,20 @@ let markers = [{marker: ["52.520008", "13.404954"], name: "Berlin"}];
 
 
 const MainScreen = props => {
-   // markers = props.markers
+    const [user, setUser] = useState()
+    let id = props.user
+    useEffect(() => {
+        const sendRequest = async () => {
+            const response = await fetch(`http://localhost:5000/api/users/${id}`)
+            const responseData = await response.json()
+            setUser(responseData.user)
+        }
+        sendRequest()
+
+    },[])
+
+    console.log(user)
+    //markers = props.markers
 
     const [showMyContacts, setTypeOfContactsList] = useState(true)
     let history = useHistory()

@@ -26,23 +26,26 @@ const LoginScreen = props => {
     const handleLogin = async event => {
         event.preventDefault();
         let id
-        const response = await fetch('http://localhost:5000/api/users/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                user_id: user.user_id,
-                password: user.password
-            })
-        });
-        const responseData = await response.json()
-        console.log(responseData)
-        if (response.ok) {
-            redirectToMain()
-        } else {
-            alert("Invalid Login")
+        try {
+            const response = await fetch('http://localhost:5000/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: user.user_id,
+                    password: user.password
+                })
+            });
+            const responseData = await response.json()
+            console.log(responseData)
+            if (response.ok) {
+                redirectToMain()
+            }
+        } catch (e) {
+            window.alert("Invalid Login")
         }
+
     }
     const redirectToMain = () => {
         props.onLoginSucess(user.user_id)
