@@ -1,0 +1,63 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+button.w3-button:hover {
+  background-color: #e0e946 !important;
+  color: gray !important;
+}
+
+#root {
+  min-height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+.w3-text-white {
+  text-shadow: 0 0 3px gray;
+}
+
+#logout-btn {
+  float: right;
+  margin-top: 10px;
+}
+
+.contact-list {
+  box-shadow: 1px 1px 3px;
+  padding: 0;
+  height: 200px;
+  overflow-y: auto;
+}
+
+.contact-entry {
+  background: rgba(0, 0, 0, 0.2);
+  list-style: none;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.contact-entry:nth-child(odd) {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.map-container {
+  width: 400px;
+  height: 400px;
+}
+
+div.olControlAttribution {
+  bottom: 0;
+}
+
+.extra-padding {
+  padding-left: 35px
+}
