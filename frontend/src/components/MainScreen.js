@@ -16,7 +16,7 @@ const myIcon = L.icon({
 });
 
 const MainScreen = props => {
-    const [markers, setMarkers] = useState([{marker: ["52.520008", "13.404954"], name: "Berlin"}])
+    const [markers, setMarkers] = useState([])
     const [show, setShow] = useState(true)
     const [center, setCenter] = useState([52.520008, 13.404954])
     let listOfMarkers = []
@@ -78,7 +78,7 @@ const MainScreen = props => {
                     <MapContainer
                         className="map-container"
                         center={center}
-                        zoom={13}
+                        zoom={11}
                         scrollWheelZoom={false}
                     >
                         <TileLayer
