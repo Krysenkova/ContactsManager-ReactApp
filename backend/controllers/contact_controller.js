@@ -1,5 +1,6 @@
 const getGeoLocation = require('../location')
 const Contact = require('../models/contact_model')
+const HttpError = require("../models/http_error");
 
 exports.getContacts = async function (req, res, next) {
     let contacts = Contact.find().exec()
@@ -45,8 +46,9 @@ exports.createContact = async function (req, res, next) {
         country,
         is_private,
         owner,
-        lon: geoLocation.l1,
-        lat: geoLocation.l2
+        lat: geoLocation.l1,
+        lon: geoLocation.l2
+
     });
 
     try {
@@ -75,25 +77,23 @@ exports.updateContact = async function (req, res, next) {
     const address = {street: street, zip: zip, country: country, state: state, city: city}
     try {
         geoLocation = await getGeoLocation(address)
-    } catch (err) {
-        console.log("Smth went wrong" + err.message)
-    }
-    contact.first_name = first_name;
-    contact.last_name = last_name;
-    contact.street = street;
-    contact.zip = zip;
-    contact.city = city;
-    contact.state = state;
-    contact.country = country;
-    contact.is_private = is_private;
-    contact.owner = owner;
-    contact.lon = geoLocation.l1;
-    contact.lat = geoLocation.l2;
+        contact.first_name = first_name;
+        contact.last_name = last_name;
+        contact.street = street;
+        contact.zip = zip;
+        contact.city = city;
+        contact.state = state;
+        contact.country = country;
+        contact.is_private = is_private;
+        contact.owner = owner;
+        contact.lat = geoLocation.l1
+        contact.lon = geoLocation.l2;
 
-    try {
+
         await contact.save()
     } catch (err) {
-        console.log("Smth went wrong" + err.message)
+        const error = new HttpError("Login failed", 500)
+        return next(error)
     }
     res.status(200).json({contact: contact.toObject()})
 }

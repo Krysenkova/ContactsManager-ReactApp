@@ -19,7 +19,6 @@ const MainScreen = props => {
     const [markers, setMarkers] = useState([{marker: ["52.520008", "13.404954"], name: "Berlin"}])
     const [show, setShow] = useState(true)
     const [center, setCenter] = useState([52.520008, 13.404954])
-
     let listOfMarkers = []
 
     const [showMyContacts, setTypeOfContactsList] = useState(true)
@@ -47,7 +46,7 @@ const MainScreen = props => {
             let lonlat = []
             let popup = ""
             lonlat.push(contact.lat, contact.lon)
-            popup = contact.first_name + " " + contact.last_name
+            popup = contact.first_name + " " + contact.last_name  + ", " + contact.street
             markerPopup.marker = lonlat
             markerPopup.name = popup
             listOfMarkers.push(markerPopup)

@@ -7,7 +7,6 @@ const AddManagerScreen = props => {
     const currentUser = props.user
     console.log(currentUser)
     let history = useHistory()
-    const [options, setOptions] = useState()
     const [contact, setContact] = useState(
         {
             firstName: "",
@@ -21,16 +20,6 @@ const AddManagerScreen = props => {
             is_private: false,
         })
 
-    useEffect(() => {
-        let responseData
-        const sendRequest = async () => {
-            const response = await fetch('http://localhost:5000/api/users')
-            responseData = await response.json()
-            setOptions(responseData.users.user_id)
-        }
-        sendRequest()
-
-    })
     const onFirstNameChange = event => {
         const firstname_changed = event.target.value;
         setContact(prevState => {

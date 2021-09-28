@@ -32,14 +32,13 @@ const ContactsList = props => {
                 setLoadedContacts(responseData.contacts)
             }
 
-            //console.log(loadedContacts)
         }
         sendRequest()
     }, [props.showMy])
     useEffect(() => {
-        if(loadedContacts !== undefined)
-        props.contacts(loadedContacts)
-    },[loadedContacts])
+        if (loadedContacts !== undefined)
+            props.contacts(loadedContacts)
+    }, [loadedContacts])
     return (
         <div className='contact-list'>
             {loadedContacts && <ContactItem contacts={loadedContacts} user={id}/>

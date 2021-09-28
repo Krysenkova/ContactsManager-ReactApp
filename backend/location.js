@@ -17,9 +17,9 @@ async function getLonLatFromAddress(address) {
         console.log("failed get a location");
     } else {
         console.log("successfully got a location");
-        const lon = responsedData[0].lon
         const lat = responsedData[0].lat
-        return {l1: lon, l2: lat}
+        const lon = responsedData[0].lon
+        return {l1: lat, l2: lon}
     }
 }
 

@@ -52,26 +52,29 @@ const UpdateManagerScreen = props => {
         event.preventDefault()
         console.log("ID: " + contactId)
         console.log("UC: " + updatedContact.first_name + updatedContact.last_name + updatedContact.zip + updatedContact.street + updatedContact.city)
-        const response = await fetch(`http://localhost:5000/api/contacts/${contactId}/`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                first_name: updatedContact.first_name,
-                last_name: updatedContact.last_name,
-                street: updatedContact.street,
-                zip: updatedContact.zip,
-                city: updatedContact.city,
-                state: updatedContact.state,
-                country: updatedContact.country,
-                owner: updatedContact.owner,
-                is_private: updatedContact.is_private
-            })
-        });
-
-        const responseData = await response.json()
-        console.log(responseData)
+        try {
+            const response = await fetch(`http://localhost:5000/api/contacts/${contactId}/`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    first_name: updatedContact.first_name,
+                    last_name: updatedContact.last_name,
+                    street: updatedContact.street,
+                    zip: updatedContact.zip,
+                    city: updatedContact.city,
+                    state: updatedContact.state,
+                    country: updatedContact.country,
+                    owner: updatedContact.owner,
+                    is_private: updatedContact.is_private
+                })
+            });
+            const responseData = await response.json()
+            console.log(responseData)
+        } catch (e) {
+            alert("Can't update contact")
+        }
         history.push('/main')
 
     }

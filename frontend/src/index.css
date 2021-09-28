@@ -49,6 +49,10 @@ button.w3-button:hover {
   background: rgba(0, 0, 0, 0.1);
 }
 
+.contact-entry:hover{
+  background: darkseagreen;
+}
+
 .map-container {
   width: 400px;
   height: 400px;

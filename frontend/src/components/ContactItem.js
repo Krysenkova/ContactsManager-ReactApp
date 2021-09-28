@@ -2,39 +2,9 @@ import React, {useEffect, useState} from "react";
 import {useHistory} from 'react-router-dom'
 
 const ContactItem = props => {
-    //const [markers, setMarkers] = useState([{markers: [], name: ""}])
+    const [hoveringContact, setHoveringContact] = useState()
     let history = useHistory()
     const user = props.user
-/*
-    let lonlat = []
-    let popup = ""
-
-    let marker = {
-        marker: [],
-        name: ""
-    }
-    let listOfMarkers = []
-    let contacts = props.contacts
-    useEffect(() => {
-        const updateMarkers = () => {
-            contacts.map(contact => {
-                lonlat.push(contact.lon)
-                lonlat.push(contact.lat)
-                popup = contact.first_name + " " + contact.last_name
-                marker.marker = lonlat
-                marker.name = popup
-                listOfMarkers.push(marker)
-                lonlat = []
-                popup = ""
-                marker = {}
-            })
-        }
-        console.log("LIST MERKERS: " + listOfMarkers)
-        console.log("LM: " + markers)
-        setMarkers(listOfMarkers)
-        props.markers(listOfMarkers)
-        updateMarkers()
-    }, [])*/
 
     function handleClick(contact) {
         if (user === "normalo" && contact.owner === "admina") {
